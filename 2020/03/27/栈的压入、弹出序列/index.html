@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="测试  这是我的第一篇博客，也是一段崭新旅程的开始。  我会在这里消化加工知识，记录所思所想，然后带着对专业的热爱和敬畏，一步一个脚印地走下去。">
+<meta name="description" content="本题看似简单，无非就是用一个辅助栈来模拟压栈、出栈的过程，但是实际上它非常考察编程者的细心程度。 在使用指针的时候要注意指针越界的问题，不仅要注意循环体，还要注意在判断条件中涉及到指针访问的操作。 1234567891011121314151617class Solution &amp;#123;public:    bool validateStackSequences(vector&lt;int&amp;gt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试">
-<meta property="og:url" content="http://yoursite.com/2020/03/09/%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:title" content="栈的压入、弹出序列">
+<meta property="og:url" content="http://yoursite.com/2020/03/27/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/index.html">
 <meta property="og:site_name" content="Huang">
-<meta property="og:description" content="测试  这是我的第一篇博客，也是一段崭新旅程的开始。  我会在这里消化加工知识，记录所思所想，然后带着对专业的热爱和敬畏，一步一个脚印地走下去。">
+<meta property="og:description" content="本题看似简单，无非就是用一个辅助栈来模拟压栈、出栈的过程，但是实际上它非常考察编程者的细心程度。 在使用指针的时候要注意指针越界的问题，不仅要注意循环体，还要注意在判断条件中涉及到指针访问的操作。 1234567891011121314151617class Solution &amp;#123;public:    bool validateStackSequences(vector&lt;int&amp;gt">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-09T13:59:20.433Z">
-<meta property="article:modified_time" content="2020-03-09T14:04:42.058Z">
+<meta property="article:published_time" content="2020-03-27T01:32:31.141Z">
+<meta property="article:modified_time" content="2020-03-27T01:41:22.960Z">
 <meta property="article:author" content="Yixiang Huang">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/09/测试/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/27/栈的压入、弹出序列/"/>
 
 
 
 
 
-  <title>测试 | Huang</title>
+  <title>栈的压入、弹出序列 | Huang</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/09/%E6%B5%8B%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/27/%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yixiang Huang">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">测试</h1>
+          <h1 class="post-title" itemprop="name headline">栈的压入、弹出序列</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-09T21:59:20+08:00">
-                2020-03-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-27T09:32:31+08:00">
+                2020-03-27
               </time>
             
 
@@ -329,12 +329,10 @@
       
 
       
-        <hr>
-<p>测试</p>
-<hr>
-<p>这是我的第一篇博客，也是一段崭新旅程的开始。</p>
-<hr>
-<p>我会在这里消化加工知识，记录所思所想，然后带着对专业的热爱和敬畏，一步一个脚印地走下去。</p>
+        <p>本题看似简单，无非就是用一个辅助栈来模拟压栈、出栈的过程，但是实际上它非常考察编程者的细心程度。</p>
+<p>在使用指针的时候要注意指针越界的问题，不仅要注意循环体，还要注意在判断条件中涉及到指针访问的操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validateStackSequences</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pushed, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; popped)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; pushed.size()) &#123;</span><br><span class="line">            temp.push(pushed[i]);</span><br><span class="line">            <span class="keyword">while</span>(!temp.empty() &amp;&amp; j &lt; popped.size() &amp;&amp; popped[j] == temp.top()) &#123;</span><br><span class="line">                temp.pop();</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">if</span>(temp.empty()) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -359,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/09/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2020/03/26/%E8%AE%B0next%E4%B8%BB%E9%A2%98%E4%B8%80%E4%B8%AA%E6%84%9A%E8%A0%A2%E7%9A%84bug/" rel="next" title="记next主题一个愚蠢的bug">
+                <i class="fa fa-chevron-left"></i> 记next主题一个愚蠢的bug
               </a>
             
           </div>
@@ -368,10 +366,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/12/%E6%94%BE%E6%89%8B%E4%B8%80%E6%90%8F/" rel="prev" title="放手一搏">
-                放手一搏 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
