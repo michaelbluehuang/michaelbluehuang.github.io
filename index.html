@@ -259,6 +259,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/19/%E6%B3%A8%E6%84%8F%E8%87%AA%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%9C%A8%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BD%8D%E7%BD%AE%E4%B8%8A%E5%8F%AF%E8%83%BD%E5%BC%95%E5%8F%91%E7%9A%84%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yixiang Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/19/%E6%B3%A8%E6%84%8F%E8%87%AA%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%9C%A8%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BD%8D%E7%BD%AE%E4%B8%8A%E5%8F%AF%E8%83%BD%E5%BC%95%E5%8F%91%E7%9A%84%E9%94%99%E8%AF%AF/" itemprop="url">注意自增运算符在函数参数位置上可能引发的错误</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-19T17:07:21+08:00">
+                2020-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天刷题用到了递归，在设计递归入口的时候随手对递归函数中的参数进行<code>i++</code>形式的自增操作，导致运行超时，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归，适用于删除若干字符</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkPalindrome</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span> del)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(low &gt;= high) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s[low] != s[high]) &#123;</span><br><span class="line">            del++;</span><br><span class="line">            <span class="keyword">if</span>(del &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> checkPalindrome(s, low + <span class="number">1</span>, high, del) || checkPalindrome(s, low, high - <span class="number">1</span>, del); <span class="comment">//注意递归传参不能直接写low++或high--</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> checkPalindrome(s, low++, high--, del);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> checkPalindrome(s, <span class="number">0</span>, s.<span class="built_in">size</span>() - <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如此一来，递归函数所传递的low和high变量将恒定不变，这样势必会导致无限递归。</p>
+<p>以后写代码的时候可要多长点脑子，因为你永远不知道下一个bug会在什么地方发生！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/04/%E4%BD%BF%E7%94%A8%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%89%E6%84%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1394,127 +1518,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/%E7%95%AA%E8%8C%84%E9%92%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yixiang Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huang">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/14/%E7%95%AA%E8%8C%84%E9%92%9F/" itemprop="url">番茄钟</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-14T00:07:27+08:00">
-                2020-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>提高效率是当务之急！于是今天在手机上下载了一个非常好用的番茄钟应用（Flat Tomato），UI设计非常养眼、清爽。在试用了一天之后感觉非常好，工作二十五分钟休息五分钟的模式看似非常细碎，但的确可以让人在很长的时间跨度中保持高效。</p>
-<p>自助者天助之，希望番茄钟能够陪伴我度过这段艰难的日子。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1565,7 +1568,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
